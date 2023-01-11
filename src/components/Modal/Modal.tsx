@@ -1,9 +1,11 @@
-import React,{ FunctionComponent, Dispatch } from 'react';
-import modalStyles from '../styles/Modal.module.css';
+import React,{ FunctionComponent } from 'react';
+import modalStyles from './Modal.module.css';
 import ReactDOM from "react-dom";
+
 type Props = {
     open:boolean,
-    setOpen:Dispatch<boolean>
+    onClose:()=>void,
+    children: React.ReactNode,
 }
 const Modal : FunctionComponent<Props> = (props) => {
     if(!document.getElementById('modal-container')){
@@ -15,9 +17,9 @@ const Modal : FunctionComponent<Props> = (props) => {
     }
     const ModalContent = () => {
         return (
-            <div className={modalStyles.modalContainer}>
-                {props.open && <React.Fragment>
-                    <div className={modalStyles.backgroundModal} onClick={() => props.setOpen(false)}></div>
+            props.open && <div className={modalStyles.modalContainer}>
+                { <React.Fragment>
+                    <div className={modalStyles.backgroundModal} onClick={props.onClose}></div>
                     <div className={modalStyles.modalBody}>
                         {props.children}
                     </div>

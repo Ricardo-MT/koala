@@ -4,7 +4,7 @@ import Logger from '../loaders/logger'
 
 export default class AuthenticationController {
 
-    constructor() {    }
+    constructor() { }
     public login = async (req: Request, res: Response, next: NextFunction) => {
         try {
             Logger.debug('Inicio proceso de login')
@@ -19,6 +19,22 @@ export default class AuthenticationController {
                     })
                 } else
                     return res.status(401).json({ status: 400, message: 'Los datos introducidos no son correctos.' });
+            } else
+                return res.status(400).json({ status: 400, message: 'Datos incorrectos.' });
+        } catch (e) {
+            Logger.debug('ERROR EN EL LOGIN')
+            Logger.error(e);
+            return res.status(400).json({ status: 400, message: "Se ha producido un error inesperado. Contacte con el administrador." });
+        }
+    }
+    public register = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            Logger.debug('Registro')
+            const { email, password, name } = req.body;
+            if (email && password) {
+                await AuthenticationService.register({ name, email, password });
+                Logger.debug('Logueado correctamente.')
+                return res.status(200).json({ status: 200, message: "Registro de usuario correcto." });
             } else
                 return res.status(400).json({ status: 400, message: 'Datos incorrectos.' });
         } catch (e) {

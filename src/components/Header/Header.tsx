@@ -1,32 +1,20 @@
-import React, { FunctionComponent, useState } from 'react';
-import Icon from '../Icon/Icon';
-import styles from './header.module.css';
+import React, { FunctionComponent } from 'react';
+import styles from './Header.module.css';
 
 type Props = {
-	username:string
 };
 
-
-
-export const Header: FunctionComponent<Props> = (props) => {
-	const [openOptions, setOpenOptions] = useState<boolean>(false);
-
-	const handleClick = () => {
-		setOpenOptions(!openOptions);
-	};
-
+export const Header: FunctionComponent<Props> = () => {
 	return (
-		<React.Fragment>
-			<div className={styles.headerContainer}>
-				{/* <SearchBar resultados={[]} onSelectResult={() => {}} onChangeSearchValue={() => {}} /> */}
-
-				<div className={styles.userInfo}>
-					<span className={styles.textInfo}>
-						<label className={styles.nombre}>{props.username}</label>
+		<header>
+			<React.Fragment>
+				<div className={styles.headerContainer}>
+					<span className={styles.appTitle}>
+						<label>Koala App</label>
 					</span>
 				</div>
-			</div>
-		</React.Fragment>
+			</React.Fragment>
+		</header>
 	);
 };
 

@@ -1,18 +1,17 @@
 import React, { FunctionComponent, useRef } from 'react';
 import Header from '../Header/Header';
+import styles from './Layout.module.css';
 
 type Props = {
-    username:string
+    children: React.ReactNode
 }
 const Layout : FunctionComponent<Props>= (props) => {
 
     const mainRef = useRef<HTMLElement>(null);
 
     return <main ref={mainRef}>
-        <header>
-            <Header username={props.username} />
-        </header>
-        <div style={{padding:'0 0'}}>
+        <Header/>
+        <div className={styles.layoutBody}>
             {props.children}
         </div>
     </main>

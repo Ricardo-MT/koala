@@ -1,8 +1,8 @@
 import passport from 'passport';
 import Usuario from '../models/usuario.model'
-import { IUser, IPublicUser } from '../interfaces/IUsuario';
+import { IUser, IPublicUser } from '../interfaces/IUser';
 
-const passportLoader =  async () => {
+const passportLoader = async () => {
     passport.serializeUser(function (user: IPublicUser, done) {
         done(null, user._id);
     })
@@ -13,7 +13,7 @@ const passportLoader =  async () => {
                 done(err, {
                     _id: user._id,
                     email: user.email,
-                    username:user.username
+                    username: user.username
                 });
 
             } else done(err, null);

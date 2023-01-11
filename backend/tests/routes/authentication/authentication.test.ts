@@ -17,8 +17,8 @@ describe('Authentication', () => {
         const res = await request(app)
             .post('/api/authentication')
             .send({
-                email: 'admin@admin.com',
-                password: 'admin',
+                email: 'ricardo@gmail.com',
+                password: 'pass123',
             })
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
